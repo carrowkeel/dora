@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Ancient DNA map</title>
+<link rel="stylesheet" type="text/css" href="/sc/main.css">
+</head>
+<body>
+<div class="wrap">
+	<div class="map-container">
+		<div class="map" data-origin="[[-180,90],[180,-90]]" data-corners="[[-180,90],[180,-90]]">
+			<div class="loading">Loading objects...</div>
+			<div class="tooltip-overlay">Create regions to start running analyses (right-click)</div>
+			<div class="menu"></div>
+			<div class="info"></div>
+			<div class="selector"></div>
+		</div>
+		<div class="main-menu moveable tabbed-content"><div class="header"><a data-icon="E" class="right" data-action="settings" title="Open settings"></a><a data-icon="g" class="right" data-action="analysis-list" title="Previous analyses"></a><a class="right" data-action="minimize"></a><h1>DORA</h1></div><div class="layers content"><a data-action="add-dataset" data-icon="+">Add dataset</a><a data-action="analyze" data-icon="g">New analysis</a></div></div>
+		<div class="floating-controls"><a data-action="zoomin">+</a><a data-action="zoomout">-</a></div>
+		<div class="data-overlays moveable"><div class="header">Colorbar</div><div class="select"></div><div class="colorbar"><div class="colorbar-scale"></div><div class="x-min">0</div><div class="x-max">1</div></div></div>
+		<div class="panels tabbed-content">
+			<div class="tabs"><a data-tab="variants">Variants</a><a data-tab="timeline">Timeline</a></div>
+			<div class="panel selected" data-tab-content="variants">
+				<div class="variants variants-plot"><div class="info"></div><a data-icon="+" data-action="add-variant">Add Variants</a></div>
+			</div>
+			<div class="panel selected" data-tab-content="timeline">
+				<div class="selector"><div class="slider left"></div><div class="slider right"></div></div>
+				<div class="timeline-plot"><div class="axis-label label-x"></div><div class="axis-tick xmin">Present</div><div class="axis-tick xmax">20 kya</div><div class="axis-tick ymin">0</div><div class="axis-tick ymax">1000</div></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="wrap">
+	<div class="footer">
+		<a href="/COPYING" target="_blank">Platform licensed under CC BY 4.0</a> | <a href="/help.html" target="_blank">Help & Tutorials</a>
+	</div>
+</div>
+<script src="/init.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Ancient DNA map</title>
+<link rel="stylesheet" type="text/css" href="/sc/main.css">
+</head>
+<body>
+<div class="wrap narrow">
+	<div class="text">
+		<div class="section">
+			<h2>Preface</h2>
+			<p><b>DORA</b> is a web-based tool for visualizing and analyzing ancient DNA (aDNA) and associated datasets. The purpose of this document is to introduce users to the features of <b>DORA</b>.</p>
+		</div>
+		<div class="section">
+			<h2>Interface</h2>
+			<div class="figure">
+				<img src="/sc/dora_main.png" alt="Main interface of DORA" title="Main interface of DORA">
+			</div>
+			<p><b>DORA</b> visualizes aDNA sample metadata and any other data that has geographical and temporal coordinates on an interactive world map. Samples appear as colored circles on the topographical map. On the left is a menu with the currently loaded metadata layers, including preloaded layers and user-defined layers. In addition, there is a "Regions" layer that allows users to select geographical regions of interest (polygons) that will be used to define sample subsets. On the right is a color bar menu that allows users to select which property of the samples will define the color of the samples. At the bottom of the map is a timeline showing the number of samples in user-defined bins. The timeline has a slider (a dark blue overlay) that defines the window of the currently displayed samples.</p>
+			<p>Metadata of individual samples can be seen by clicking on the individual samples on the map.</p>
+		</div>
+		<div class="section">
+			<h2>Loading data</h2>
+			<p>To load data into the interface, first click the "Add dataset" button on the layers menu on the left. This will open a dialog showing the types of files that can be added to the interface. The first screen of this dialog shows the list of available datasets, including those preloaded into the tool and those available on the local browser cache. Users can add either "primary" datasets, i.e., new samples with spatiotemporal coordinates, or metadata that will be assigned to existing samples loaded into the interface.</p>
+			<div class="figure">
+				<img src="/sc/dora_datasets.png" alt="Datasets menu on DORA" title="Datasets menu on DORA">
+			</div>
+			<p>To add new <b>samples</b>, click on the "Samples" tab and drag and drop into the box a CSV or TSV file containing a list of samples, with the mandatory columns "sample_id" (canonical sample ID), "bed_id" (genetic ID), "date" (date estimation), "long" (longitude), "lat" (latitude) and "coverage" (BED file coverage, if no genotypes are available, set this field to 0).</p>
+			<p>To add <b>metadata</b>, click on the "Metadata" tab and drag and drop into the box a CSV or TSV file containing a list of samples, with a "sample_id" column, in addition to any number of custom metadata columns.</p>
+			<p>Results of <b>ADMIXTURE analyses</b> can be added similarly to metadata, as an additional property of samples. To add these results, click on the "Admixture results" tab, drag and drop into the box .Q and .fam files together from the ADMIXTURE results directory. These will be assigned to samples according to the genetic IDs in the FAM file, which should match the genetic IDs ("bed_id" column) or sample ID of the samples.</p>
+			<p><b>Genotypes</b> of samples can be added in PLINK BED format, by clicking on the "Genotypes" tab, dragging and dropping into the box .bed, .bim and .fam files together. When running analyses, these files will be included and analyses will be run in tandem on the preloaded genotypes, alongside the locally loaded genotypes.</p>
+			<p>Finally, <b>polygenic scores (PGS)</b> can be added directly from PGSCatalog, for use with downstream PGS analyses. To add PGS from PGSCatalog, click on the "PGSCatalog" tab: enter a trait of interest and click "Search". A list of traits in PGSCatalog will appear. Select a trait and a list of PGS for this trait will appear. Click on a specific PGS to add it to the tool. The PGS will be searchable when running PGS analyses using either the trait label or PGS ID (e.g., PGS001234).</p>
+		</div>
+		<div class="section">
+			<h2>Analyses</h2>
+			<p>Analyses are performed on subsets of samples and variants selected by the user. To select geographical regions of interest, right-click the map and select "Create region". Then left-click on the map repeatedly to create a polygon. When finished, right-click on the map again. Polygons cannot be modified once created. To delete polygons, left-click on the polygon to select it, and then press delete or backspace on your keyboard. To edit the label of the region, double-click on the polygon: this will open a dialog box where the label of the region can be defined. To select variants, open the variants panel by clicking on the "Variants" tab at the bottom right of the screen. This will open the variants dialog box (this can also be opened again by clicking the "Add Variants" button on the bottom right of the variants panel. Once open, indicate the genomic region of interest; variants in this region will be analyzed. Note that for "Allele frequency" analyses, the variant is specified by its rsID in the analysis panel. Variants can be remove by selecting the regions in the variants dialog box and clicking "Delete".</p>
+			<p><u>Please note that analyzing a large number of variants will substantially slow down the analyses, or may require too much memory and fail.</u></p>
+			<div class="figure">
+				<img src="/sc/dora_analyses.png" alt="Analysis dialog box on DORA" title="Analysis dialog box on DORA">
+			</div>
+			<p>Analyses can be initiated by right-clicking the map and clicking "Analyze". This will open the "Analysis" dialog box. Each tab in the dialog box relates to a different type of analysis that can be performed. First click the tab for the specific analysis, then specify parameters, then click "Run". For all analyses it is necessary to define temporal windows for the analysis: these create temporal subsets of the samples in each of the regions drawn on the map. It is also possible to define filters for sample and variant coverage: these define the thresholds below which samples or variants will be removed from the analysis.</p>
+			<p>After clicking "Run", the analysis will be distributed to cloud or local environments, depending on the location of the genotype files used for the analysis. A dialog box will open with a link to the results. When the analysis is completed, this link will display the plotted results of the analysis.</p>
+		</div>
+		<div class="section">
+			<h2>Plots and data visualization</h2>
+			<div class="figure">
+				<img src="/sc/dora_result.png" alt="Analysis dialog box on DORA" title="Analysis dialog box on DORA">
+			</div>
+			<p>Once an analysis has completed, the results will be stored in the browser cache and can be loaded either via the link provided, or through the list of analyses that can be accessed by clicking on the graph icon at the top right of the main menu. The "Results" dialog box displays both the plot of the results and Python code that generated the plot. This code can be edited and the plot regenerated by clicking "Update" at the bottom right of the "Results" dialog box. Each analysis comes with at least one visualization option; in the example above, the visualization is a line plot of the allele frequency in the regions selected for the analysis.</p>
+			<p>Plots can be saved by clicking the "Save" button; this will open a browser dialog box asking the user where to save the PNG image.</p>
+		</div>
+	</div>
+	<div class="text">
+		<div class="section">
+			<p>You can comment on and contribute to our project by <a target="_blank" href="https://join.slack.com/t/adna-map/shared_invite/zt-1qsux64c0-9zvnMEQLtzbQDlbE_3FFbw">joining our Slack workspace</a>.</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+
+
